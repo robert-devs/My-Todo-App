@@ -58,12 +58,11 @@
 .task-item.completed{
     background-color: rgb(212, 212, 212);
 }
-.task-item.completed p,
-.task-item.completed span{
-}
-span{
-    columns: rgb(254, 7, 250);
 
+.status{
+    color: rgb(236, 9, 180);
+    display: block;
+    padding: 10px;
 }
 .task-body{
     flex: 1;
@@ -97,6 +96,7 @@ span{
     padding: 5px 10px;
     font-size: 20px;
     font-weight: bold;
+    text-align: right;
     border-radius: 50%;
     cursor: pointer;
     text-decoration: none !important;

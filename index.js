@@ -21,7 +21,7 @@ const loadTodos = (todos)=>{
                 <input type="checkbox" ${completed ? "checked" : "pending"} onchange="checkBoxChange(this)" /> 
                 <div class="task-body">
                     <h4>${title} <span class="due-date">Due: ${date}</span></h4>
-                    <p>${description}<span>${completed ? " completed":"pending"}</span></p>
+                    <p>${description}<span class="status">${completed ? " completed":"pending"}</span></p>
                 </div>
                 <span class="close" onclick="deleteTodo(this)">\u00D7</span>
                 </li>`
@@ -80,23 +80,8 @@ const  deleteTodo = (e)=>{
     loadTodos(updatedTodos)
     todos = updatedTodos
 }
-// const pendingTodos = (e)=>{
-//     const todoId = e.parseInt.id;
-//     const updatedTodos = todos.filter((todos)=>{
-//         updatedTodos.id === parent(todoId)
 
-//     })
-// }
-// const pendingTodo =(e)=>{
-//     const todoId = e.parentElement.id
-//     const checked = todos.map(checkBoxChange =>{
-//         if(todoId === parseInt(checked)) todos.complete =false
-//             return(checked?'task is pending':" task")
-            
-//         }
-        
-//     )
-// }
+
 
 
 // var i;
