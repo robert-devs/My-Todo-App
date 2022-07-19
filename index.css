@@ -59,8 +59,11 @@
     background-color: rgb(212, 212, 212);
 }
 .task-item.completed p,
-.task-item.completed h4{
-    text-decoration: line-through;
+.task-item.completed span{
+}
+span{
+    columns: rgb(254, 7, 250);
+
 }
 .task-body{
     flex: 1;

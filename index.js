@@ -18,10 +18,10 @@ const loadTodos = (todos)=>{
     if(todos.length > 0 ){
         const todosHtml = todos.map(({id, date, title, description, completed})=>{
             const element = `<li class="task-item ${completed ? "completed":""}" id="${id}">
-                <input type="checkbox" ${completed ? "checked" : ""} onchange="checkBoxChange(this)" /> 
+                <input type="checkbox" ${completed ? "checked" : "pending"} onchange="checkBoxChange(this)" /> 
                 <div class="task-body">
                     <h4>${title} <span class="due-date">Due: ${date}</span></h4>
-                    <p>${description}</p>
+                    <p>${description}<span>${completed ? " completed":"pending"}</span></p>
                 </div>
                 <span class="close" onclick="deleteTodo(this)">\u00D7</span>
                 </li>`
@@ -50,7 +50,7 @@ const newTodoSubmit = ()=>{
     }
 
     if(!descriptionValue){
-        alert("DEscription is required")
+        alert("Dscription is required")
         return
     }
 
@@ -64,7 +64,7 @@ const checkBoxChange = (e)=>{
     const todoId = e.parentElement.id
 
     const updatedTodos = todos.map(todo=>{
-        console.log(todo.id, todoId);
+        // console.log(todo.id, todoId);
         if(todo.id === parseInt(todoId)) todo.completed = e.checked
         return todo
     })
@@ -73,13 +73,30 @@ const checkBoxChange = (e)=>{
 }
 
 const  deleteTodo = (e)=>{
-    console.log(e);
+    // console.log(e);
     const todoId = e.parentElement.id
     const updatedTodos = todos.filter(todo=> todo.id !== parseInt(todoId))
 
     loadTodos(updatedTodos)
     todos = updatedTodos
 }
+// const pendingTodos = (e)=>{
+//     const todoId = e.parseInt.id;
+//     const updatedTodos = todos.filter((todos)=>{
+//         updatedTodos.id === parent(todoId)
+
+//     })
+// }
+// const pendingTodo =(e)=>{
+//     const todoId = e.parentElement.id
+//     const checked = todos.map(checkBoxChange =>{
+//         if(todoId === parseInt(checked)) todos.complete =false
+//             return(checked?'task is pending':" task")
+            
+//         }
+        
+//     )
+// }
 
 
 // var i;
