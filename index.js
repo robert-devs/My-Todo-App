@@ -4,9 +4,9 @@ const titleInput = document.getElementById("title-input");
 const dateInput = document.getElementById("date-input");
 const descriptionInput = document.getElementById("description-input");
 
-const addTodo = (title, description, date)=>{
+const addTodo = (title, description, date) => {
     const id = Math.ceil(Math.random() * 100000000);
-    const todo = {id, title, description, date, completed: false }
+    const todo = { id, title, description, date, completed: false }
 
     const newTodos = [...todos, todo]
     loadTodos(newTodos)
@@ -14,14 +14,14 @@ const addTodo = (title, description, date)=>{
     todos.push(todo)
 }
 
-const loadTodos = (todos)=>{
-    if(todos.length > 0 ){
-        const todosHtml = todos.map(({id, date, title, description, completed})=>{
-            const element = `<li class="task-item ${completed ? "completed":""}" id="${id}">
-                <input type="checkbox" ${completed ? "checked" : "pending"} onchange="checkBoxChange(this)" /> 
+const loadTodos = (todos) => {
+    if (todos.length > 0) {
+        const todosHtml = todos.map(({ id, date, title, description, completed }) => {
+            const element = `<li class="task-item ${completed ? "completed" : ""}" id="${id}">
+                <input type="checkbox" ${completed ? "checked" : ""} onchange="checkBoxChange(this)" /> 
                 <div class="task-body">
                     <h4>${title} <span class="due-date">Due: ${date}</span></h4>
-                    <p>${description}<span class="status">${completed ? " completed":"pending"}</span></p>
+                    <p>${description}<span class="status">${completed ? " completed" : "pending"}</span></p>
                 </div>
                 <span class="close" onclick="deleteTodo(this)">\u00D7</span>
                 </li>`
@@ -29,27 +29,27 @@ const loadTodos = (todos)=>{
             return element
         })
         todosContainer.innerHTML = todosHtml.join("")
-    }else{
+    } else {
         todosContainer.innerHTML = "<h2 style='text-align: center;'>No Todos Yet</h2>"
     }
 }
 
-const newTodoSubmit = ()=>{
+const newTodoSubmit = () => {
     const titleValue = titleInput.value;
     const dateValue = dateInput.value;
     const descriptionValue = descriptionInput.value;
 
-    if(!titleValue){
+    if (!titleValue) {
         alert("Title is required")
         return
     }
 
-    if(!dateValue){
+    if (!dateValue) {
         alert("Date is required")
         return
     }
 
-    if(!descriptionValue){
+    if (!descriptionValue) {
         alert("Dscription is required")
         return
     }
@@ -60,57 +60,34 @@ const newTodoSubmit = ()=>{
     descriptionInput.value = ""
 }
 
-const checkBoxChange = (e)=>{
+
+const checkBoxChange = (e) => {
     const todoId = e.parentElement.id
 
-    const updatedTodos = todos.map(todo=>{
+    const updatedTodos = todos.map(todo => {
         // console.log(todo.id, todoId);
-        if(todo.id === parseInt(todoId)) todo.completed = e.checked
+        if (todo.id === parseInt(todoId)) todo.completed = e.checked
         return todo
     })
     loadTodos(updatedTodos)
     todos = updatedTodos
 }
+const editNewTodos = ()=>{
+  $(':checkbox').editTodoSubmit(function() {
+   var box = $(this);
+   box.closest('.myTask').find('input[type=text]').prop('disabled', !box.is(':checked'));
+});
 
-const  deleteTodo = (e)=>{
+}
+
+const deleteTodo = (e) => {
     // console.log(e);
     const todoId = e.parentElement.id
-    const updatedTodos = todos.filter(todo=> todo.id !== parseInt(todoId))
+    const updatedTodos = todos.filter(todo => todo.id !== parseInt(todoId))
 
     loadTodos(updatedTodos)
     todos = updatedTodos
 }
 
-
-
-
-// var i;
-// for (i = 0; i < myNodelist.length; i++) {
-//   var span = document.createElement("SPAN");
-// //   var txt = document.createTextNode("\u00D7");
-//   span.className = "close";
-// //   span.appendChild(txt);
-//   myNodelist[i].appendChild(span);
-// }
-
-// var close = document.getElementsByClassName("close");
-// var i;
-// for (i = 0; i < close.length; i++) {
-//   close[i].onclick = function () {
-//     var div = this.parentElement;
-//     div.style.display = "none";
-//   };
-// }
-
-// var list = document.querySelector("ul");
-// list.addEventListener(
-//   "click",
-//   function (ev) {
-//     if (ev.target.tagName === "LI") {
-//       ev.target.classList.toggle("checked");
-//     }
-//   },
-//   false
-// );
 
 loadTodos(todos)
